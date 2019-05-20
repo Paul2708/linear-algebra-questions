@@ -1,0 +1,440 @@
+\documentclass[11pt,parskip=full]{scrartcl}
+
+% Packages
+\usepackage{amsmath,amssymb,amstext}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage[german]{babel}  
+\usepackage{csquotes}       
+\usepackage{enumitem}
+
+% Information
+\title{Frageliste zur Linearen Algebra I}
+\subtitle{aus Protokollen entnommen}
+\date{09.04.2019}
+\author{Paul Hoger}
+
+% Commands
+\newcommand{\answer}{\item[\textbf{Antwort}]}
+
+\begin{document}
+	\maketitle
+	
+	\begin{enumerate}[label=\textbf{\arabic*. Frage}]
+		
+		% 1. Protokoll
+		\item Wann ist das folgende lineare Gleichungssystem lösbar?
+		\begin{equation*}
+			A*x = b
+		\end{equation*}
+		\answer Das LGS ist lösbar, wenn \(Rang(A) = Rang(A|b)\).
+		
+		\item Was ist der Rang einer Matrix $A$?
+		\answer Der Rang \(Rang(A)\) einer Matrix \(A \in K^{p \times q}\) wird definiert als der Rang der eindeutig bestimmten Treppenform \(T\) von Gestalt \(T=C \cdot A, \quad C \in \mathrm{GL}_{p}(K)\). \\
+		Oder: Der Rang einer Matrix ist die Anzahl der linear unabhängigen Zeilen bzw. Spalten.
+		
+		\item Wie wird ein LGS gelöst?
+		\answer Wende das Gaußverfahren auf die Matrix an, bis diese Treppenform hat.
+		
+		\item Können Umformungen auch mittels Matrizenmultiplikation durchgeführt werden?
+		\answer Ja, für jede Umformung gibt es eine Matrix, die diese Umformung durch Multiplikation erzeugt. Die Matrizen heißen Additionsmatrizen und Vertauschungsmatrizen.
+			
+		\item Was muss an $Id_{3}$ multipliziert werden, damit die 2. Zeile 2-mal auf die 3. Zeile addiert wird?
+		\answer Es gilt: 
+		\(\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & 1 & 0 \\	
+			0 & 0 & 1
+		\end{pmatrix}\ * \begin{pmatrix}1 & 0 & 0 \\0 & 1 & 0 \\ 0 & 2 & 1\end{pmatrix} = \begin{pmatrix}1 & 0 & 0 \\0 & 1 & 0 \\ 0 & 2 & 1\end{pmatrix}\).
+		
+		\item Wie ist eine lineare Abbildung zwischen den beiden $K$-Vektorräumen $V$ und $W$ definiert?
+		\answer Sei $K$ ein Körper und $V$, $W$ zwei $K$-Vektorräume. Eine ($K$-)lineare Abbildung von $V$ nach $W$ ist eine Abbildung \(\Phi : V \rightarrow W\), für die gilt: \\
+		\(\begin{aligned} \forall u, v \in V : & \Phi(u+v)=\Phi(u)+\Phi(v) \\ \forall a \in K, v \in V : & \Phi(a v)=a \Phi(v) \end{aligned}\)
+		
+		\item Wie bildet man die Abbildungsmatrix von $\Phi$?
+		\answer Sei \(\Phi : V \rightarrow W\) eine lineare Abbildung, $B$ eine Basis von $V$ und $C$ eine Basis $W$. \\ 
+		Bestimme für jeden Basisvektor aus $B \ \Phi(b)$ und stelle den Vektor anschließend als Linearkombination aus $C$ dar. Trage nun die Koeffizienten spaltenweise in eine Matrix ein.
+				
+		\item Wie wird die Abbildungsmatrix durch einen Basiswechsel verändert?
+		\answer Man bildet bzgl. einer anderen Basis ab. Daher ändern sich die einzelnen Spalten, da man die neuen Basisvektoren abbildet.
+		
+		\item Wie berechnet man einen Basiswechsel?
+		\answer Es seien $V$, $W$ zwei $K$-Vektorräume und $\Phi$ ein Homomorphismus von $V$ nach $W$. Weiter seien $B$, $\tilde{B}$ zwei Basen von $V$ und $C$, $\tilde{C}$ zwei Basen von $W$. Dann gilt:\\
+		\(D_{\tilde{C}\tilde{B}}(\Phi) = D_{\tilde{C}C}(Id_W) * D_{CB}(\Phi) * D_{B\tilde{B}}(Id_V)\)
+		
+		\item Sei $B$ ähnlich zu $A$. Es gilt also: \(B = S^{-1} * A * S\) für eine geeignete Matrix $S$. Wie kann man $S$ bestimmen?
+		\answer Da Eigenwerte eine Ähnlichkeitsinvariante ist, muss gelten \(T^{-1}*A*T = D = U^{-1}*B*U\), wobei $T$, $U$ geeignet gewählt sind und $D$ die Diagonalmatrix ist. \\
+		Also gilt \(T^{-1}*A*T = U^{-1}*B*U\). Man stellt nach $B$ um und erhält: \((U*T^{-1})*A*(T*U^{-1}) = B\). Nun sei \(S := T*U^{-1}\). Daraus folgt: \\
+		\(S^{-1} * A * S = B\)
+		
+		\item Wann ist der Endomorphismus \(\phi\)\ bzw. $A$ diagonalisierbar?
+		\answer Es gilt:\\
+		\(\begin{aligned}A \text{ ist diagonalsierbar} 
+		&\iff A \text{ ist ähnlich zu einer Diagonalmatrix}\\
+		&\iff \text{alle Eigenwerte sind verschieden}\\
+		&\iff \forall \lambda \in Spec(A): \mu_{g}(\lambda) = \mu_{a}(\lambda)\\
+		&\iff \text{Es existiert eine Basis aus Eigenvektoren}\\
+		&\iff V \text{ ist direkte Summe der Eigenräume}\\
+		&\iff dim(V) = \sum_{\lambda \in Spec(\Phi)}dim(Eig(\Phi, \lambda))
+		\end{aligned}\)
+		
+		\item Nenne eine Matrix, die nicht diagonalisierbar ist.
+		\answer \(\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\) oder \(\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\).
+		
+		% 2. Protokoll
+		\item Was ist ein homogenes Gleichungssystem?
+		\answer Ein homogenes LGS hat die Form $A*x=0$.
+		
+		\item Wie ist der Kern einer Abbildung $\Phi$ definiert?
+		\answer Sei \(\Phi : V \rightarrow W\). Dann ist der \(Kern(\Phi) = \{v \in V | \Phi(v) = 0\}\).
+		
+		\item Was ist die Dimensionsformel von $\Phi$?
+		\answer \(dim(V) = dim(Bild(\Phi)) + dim(Kern(\Phi))\)
+		
+		\item Was ist das Besondere an einem invarianten Untervektorraum?
+		\answer Falls $U$ ein invarianter Untervektorraum ist, dann gilt \(\Phi(U) \subseteq U\).
+		
+		\item Wie sind Eigenvektoren definiert?
+		\answer Ein Vektor \(v \in V\) heißt Eigenvektor, wenn gilt: \\
+		\(v \neq 0\) und \(\exists k \in K: \Phi(v) = k*v\)
+		
+		\item Wie berechnet man Eigenwerte?
+		\answer Man berechnet die Nullstellen des zugehörigen charakteristischen Polynoms.
+		
+		\item Wie sieht das charakteristische Polynom aus?
+		\answer Das charakteristische Polynom einer Matrix $A$ ist gegeben durch \(CP_{A}(\lambda) = det(A-\lambda Id)\).
+		
+		\item Warum sind die Nullstellen des Charakteristischen Polynoms genau die Eigenwerte?
+		\answer Für jeden Eigenwert $\lambda$ gilt:\\
+		\(\begin{aligned}
+		&A*v = \lambda*v \\
+		\iff &(Av - \lambda*Id*v) = 0 \\
+		\iff &(A - \lambda*Id)v = 0 \\
+		\iff &\text{Satz vom Nullprodukt: } (A - \lambda*Id) = 0 \\
+		\iff &(A - \lambda *Id) \text{ ist nicht invertierbar} \\
+		\iff &det(A - \lambda*Id) = 0 \\
+		\iff &\lambda \text{ ist Nullstelle vom charaktersitischen Polynom}
+		\end{aligned}\)
+		
+		\item Wie viele Eigenwerte kann es geben?
+		\answer Für \(A \in K^{n \times n}\) gilt: Es gibt höchstens $n$ Eigenwerte.
+		
+		\item Wie lautet die Definition einer Diagonalmatrix?
+		\answer Eine Diagonalmatrix ist eine Matrix folgender Form: \(D=\left( \begin{array}{cccc}{d_{11}} & {0} & {\cdots} & {0} \\ {0} & {d_{22}} & {\ddots} & {\vdots} \\ {\vdots} & {\ddots} & {\ddots} & {0} \\ {0} & {\cdots} & {0} & {d_{n n}}\end{array}\right)\)
+		
+		\item Wann sind zwei Matrizen ähnlich?
+		\answer Eine Matrix \(A \in K^{n \times n}\) ist ähnlich zu \(B \in K^{n \times n}\), falls es eine Matrix \(S \in GL_{n}^{K}\) gibt mit \(B = S^{-1} * A * S\).
+		
+		\item Beweisen Sie, dass die Determinante eine Ähnlichkeitsinvariante ist.
+		\answer Seien $A$ und $B$ ähnlich Matrizen zueinander. Dann gilt:\\
+		\(\begin{aligned}
+			det(B) &= det(S^{-1}*A*S)\\ &= det(S^{-1}) * det(A) * det(S)\\ &= det(S^{-1}) * det(S) * det(A)\\ &= det(S^{-1}*S) * det(A)\\ &= det(Id) * det(A)\\ &= 1 * det(A)\\ &= det(A)
+		\end{aligned}\)
+		
+		% 3. Protokoll
+		\item 
+		Sei \(A =
+		\begin{pmatrix}
+			1 & 2 & 3 \\
+			4 & 5 & 6 \\
+			7 & 8 & 9
+		\end{pmatrix}\). Bestimmen Sie den Rang von $A$ und die Dimension vom Kern von $A$. Was lässt sich über die Eigenwerte sagen?
+		\answer Der Rang der Matrix ist 2. \(dim(Kern(A)) = 1\), da \(dim(Bild(A)) = dim(A) - dim(Bild(A)) = 3 - 2 = 1\). \\
+		Da $A$ keinen vollen Rang hat, gilt:\\
+		\(det(A) = 0 \iff det(A-0*Id) = 0 \iff 0 \in Spec(A)\)
+		
+		\item Beweisen Sie die Dimensionsformel: \(dim(U+W) = dim (U) + dim (W) - dim(U \cap W)\)
+		\answer Sei $B_1$ eine Basis von $U \cap W$. Mithilfe der Basisergänzung lässt sich $B_1$ zu einer Basis $B$ von $U$ ergänzen, analog lässt sich $B_1$ zu einer Basis $C$ von $W$ ergänzen.\\
+		Dann gilt \(B \cap C = B_1\), denn die Elemente von $B \cap C$ liegen ja alle in $U \cap W$, also in dem von $B_1$ erzeugten Vektorraum. Außerdem ist $B \cup C$ linear unabhängig, denn aus \[\sum_{v \in B \cup C} \lambda_v v = 0, \lambda_v \in K\] folgt: \\
+		\[\sum_{v \in B} \lambda_v v = - \sum_{v \in C \setminus B_1} \lambda_v v\]\\
+		Die rechte Seite liegt in $W$, die linke Seite in $U$, also sind linke und rechte Seite im Durchschnitt $U \cap W$. Das geht für die rechte Seite nur, wenn alle \(\lambda_v, v \in C \setminus B_1\), verschwinden (also Null sind). Damit sind überhaupt alle $\lambda_v$'s Null, also $B \cup C$ linear unabhängig. Also ist $B \cup C$ eine Basis von $U + W$, und es gilt: \\
+		\(dim(U+W) = |B \cup C| = |B| + |C| - |B \cap C| = dim(U) + dim(W) - dim(U \cap W)\) 
+		
+		\item Was sagt der Basisergänzungssatz aus?
+		\answer Eine linear unabhängige Teilmenge kann zu einer Basis ergänzt werden.
+		
+		\item Wie hängt der Kern mit Injektivität zusammen?
+		\answer Sei \(\Phi : V \rightarrow W\) eine lineare Abbildung. Dann gilt\\
+		$\Phi$ injektiv \(\iff Kern(\Phi) = \{0\}\).\\
+%		Beweis:\\
+%		\(\begin{aligned}
+%		\Rightarrow: &\text{ Sei } \Phi \text{ injektiv.}\\
+%		& \Rightarrow \forall v_{1}, v_{2} \in V: \Phi(v_{1}) = \Phi(v_{2}) \Rightarrow v_{1} = v_{2}\\
+%		& \Rightarrow \Phi(v_{1}) - \Phi(v_{2}) = 0\\
+%		& \Rightarrow \Phi(v_{1} - v_{2}) = 0\\
+%		& \Rightarrow (v_{1} - v_{2}) \in Kern(\Phi)\\
+%		& \Rightarrow \text{da } v_{1} = v_{2}: Kern(\Phi) = \{0\}.
+%		\end{aligned}\)
+%		
+%		\(\begin{aligned}
+%		\Leftarrow: &\text{ Sei } Kern(\Phi) = \{0\}.\\
+%		& \Rightarrow \forall v_{1}, v_{2} \in V: \Phi(v_{1}) = \Phi(v_{2}) \Rightarrow v_{1} = v_{2}\\
+%		& \Rightarrow \Phi(v_{1}) - \Phi(v_{2}) = 0\\
+%		& \Rightarrow \Phi(v_{1} - v_{2}) = 0\\
+%		& \Rightarrow (v_{1} - v_{2}) \in Kern(\Phi)\\
+%		& \Rightarrow \text{da } v_{1} = v_{2}: Kern(\Phi) = \{0\}.
+%		\end{aligned}\)
+		
+		\item Zeigen Sie: Kern\((\Phi) = {0} \Rightarrow \Phi\) injektiv
+		\answer Sei \(Kern(\Phi) = 0\). Dann gilt für alle \(v_{1}, v_{2} \in V\) mit \(\Phi(v_{1}) = \Phi(v_{2})\):\\
+		\(\Rightarrow \Phi(v_{1}) - \Phi(v_{2}) = 0 \\
+		\Rightarrow \Phi(v_{1} - v_{2}) = 0 \\
+		\Rightarrow (v_{1} - v_{2}) \in Kern(\Phi) \\
+		\Rightarrow \text{da } Kern(\Phi) = \{0\} \Rightarrow (v_{1} - v_{2}) = 0 \\
+		\Rightarrow v_{1} = v_{2} \Rightarrow \Phi \text{ ist injektiv.}
+		\)
+		
+		\item Für was benutzt man Determinanten?
+		\answer Eigenwerte bestimmen durch das charakteristische Polynom, Matrizen auf Invertierbarkeit prüfen
+		
+		\item Zählen Sie Ähnlichkeitsinvarianten auf.
+		\answer Spur, Rang, Determinante, charakteristisches Polynom, Minimalpolynom, Eigenwerte, Jordan-Normalform
+		
+		% 4. Protokoll
+		Sei \(A =
+		\begin{pmatrix}
+		1 & 2 & 3 \\
+		3 & 4 & 5 \\
+		5 & 6 & 7
+		\end{pmatrix}\).
+		\item Berechnen Sie den Rang von $A$.
+		\answer Der Rang von $A$ ist $2$.
+		
+		\item Bestimmen Sie die Dimension vom Kern von $A$.
+		\answer Der \(Kern(A)\) ist gleich $1$. (-1-Trick oder Dimensionsformel)
+		
+		\item Geben Sie die allgemeine Formel für die Dimension vom Kern, in der der Rang vorkommt.
+		\answer Sei \(A \in R^{p \times q}\). Dann gilt:\\
+		\(dim(Kern(A)) = q - Rang(A)\)
+		
+		\item Was ist ein Vektorraumhomomorphismus?
+		\answer Ein Vektorraumhomomorphismus ist eine lineare Abbildung zwischen zwei Vektorräumen.\\
+		Für \(\Phi: V \rightarrow W\) muss also gelten:\\
+		\(\begin{aligned} \forall u, v \in V : & \Phi(u+v)=\Phi(u)+\Phi(v) \\ \forall a \in K, v \in V : & \Phi(a v)=a \Phi(v) \end{aligned}\)
+		
+		\item Wie lautet die Ungleichung zwischen der algebraischen und geometrischen Vielfachheit?
+		\answer Für \(\lambda \in \operatorname{Spec}(\Phi)\) gilt \(1 \leq \mu_{g}(\Phi, \lambda) \leq \mu_{a}(\Phi, \lambda)\)
+		
+		\item Beweisen Sie die Ungleichung der algebraischen und geometrischen Vielfachheit.
+		\answer Es ist klar, dass \(\mu_{g}(\Phi, \lambda) \geq 1 \Longleftrightarrow \lambda \in \operatorname{Spec}(\Phi) \Longleftrightarrow \mu_{a}(\Phi, \lambda) \geq 1\).\\
+		Denn die erste Äquivalenz definiert geradezu die Eigenwerte und die zweite Äquivalenz nutzt aus, dass \(CP_\Phi(X)\) genau dann durch $(X-\lambda)$ teilbar ist, wenn \(CP_\Phi(\lambda) = 0\) (siehe Teilbarkeit im Polynomring).\\
+		Nun sei \(\lambda \in Spec(\Phi)\). Wir wählen eine Basis \(\{b_1,...,b_d\}\) von \(Eig(\Phi, \lambda)\) und ergänzen sie zu einer Basis \(B := \{b_1,...,b_e\}\) von $V$.\\
+		8.2.4 sagt uns \(D_{BB}(\Phi) = \begin{pmatrix} \lambda * I_d & C \\ 0 & D \end{pmatrix}\), mit \(C \in K^{d \times (e-d)}\) und \(D \in K^{(e-d) \times (e-d)}\). Daraus aber ergibt sich:\\
+		\(\begin{aligned}CP_\Phi(X) &= det \begin{pmatrix}
+		(X-\lambda)*I_D & -C \\ 0 && XI_{e-d}-D
+		\end{pmatrix} \\ &= det((X-\lambda)*I_d)*det(XI_{e-d}-D)\\ &= (X-\lambda)^d*CP_D(X) \end{aligned}\).\\
+		Nach Konstruktion ist \(d = \mu_{g}(\Phi, \lambda)\), und es folgt: \\
+		Für \(\lambda \in \operatorname{Spec}(\Phi)\) gilt \(1 \leq \mu_{g}(\Phi, \lambda) \leq \mu_{a}(\Phi, \lambda)\)
+		
+		% 5. Protokoll
+		\item Was ist der Rang des Charakteristischen Polynoms?
+		\answer Das charakteristische Polynom ist ein normiertes Polynom vom Grad $n$.
+		
+		% 6. Protokoll
+		\item Was muss gelten, damit man aus Injektivität auch Surjektivität folgern kann?
+		\answer Sei \(f: A \rightarrow B\). Falls $A$ und $B$ Vektorräume sind, muss gelten: \(dim(A) = dim(B)\). Ansonsten muss \(|A| = |B|\) gelten, wobei $A$, $B$ endlich sind.
+			
+		% 7. Protokoll
+		\item Nennen Sie die Dimensionsformel, die Untervektorräume behandelt.
+		\answer Seien $U$, $W$ Untervektorräume von dem Vektorraum $V$. Dann gilt:\\
+		\(dim(U+W) = dim(U) + dim(W) - dim(U \cap W)\)
+		
+		\item Was sagt der Satz von Cayley-Hamilton?
+		\answer Sei $\Phi$ ein Endomorphismus von dem Vektorraum $V$. Dann gilt:\\
+		\(CP_{\Phi}(\Phi) = 0\)
+		
+		% 8. Protokoll (sehr zu empfehlen)
+		\item Wie ist das Bild von einem Homomorphismus definiert?
+		\answer Sei \(\Phi: V \rightarrow W\) ein Homomorphismus. Dann ist \(Bild(\Phi) = \{\Phi(v) | v \in V\}\)
+		
+		\item Nennen Sie einen endlich-dimensionalen Körper.
+		\answer \(Z/pZ\) ist ein Körper, wobei $p$ eine Primzahl ist.
+		
+		% 9. Protokoll
+		% 10. Protokoll
+		% 11. Protokoll
+		\item Was ist ein Vektorraum?
+		\answer Es sei $K$ ein Körper. Ein Vektorraum über $K$ ist eine kommutative Gruppe \((V, +)\) für die zusätzlich die Abbildung der skalaren Multiplikation definiert ist:\\
+		\(\cdot: K \times V\) mit \((a, v) \mapsto a \cdot v\)\\
+		Folgende Bedingungen müssen erfüllt sein:\\
+		\(\forall v \in V: 1_K \cdot v = v\)\\
+		\(\forall a,b \in K, v \in V: a \cdot (b \cdot v) = (a \cdot b) \cdot v\)\\
+		\(\begin{aligned} \forall a,b \in K, u,v \in V &\\
+		a \cdot (u + w) &= a \cdot u + a \cdot v\\
+		(a + b) \cdot v &= a \cdot v + b \cdot v
+		\end{aligned}\)
+		
+		\item Beweisen Sie, dass \(0_K * v = 0\)
+		\answer Sei \(n := 0_K * v\). Dann gilt:\\
+		\(n = 0_K * v = (0_K + 0_K) * v = 0_K * v + 0_K * v = n + n\)\\
+		Wenn wir nun auf beiden Seiten das additive Inverse zu $n$ addieren, folgt \(n = 0_V\).
+				
+		\item Was ist eine Basis?
+		\answer Sei $K$ ein Körper und $V$ ein $K$-Vektorraum. Eine Teilmenge \(B \subseteq V\) heißt eine Basis von $V$, falls sich jeder Vektor \(v \in V\) auf genau eine Art als Linearkombination von $B$ schreiben lässt.
+		
+		\item Was sind Ähnlichkeitsinvarianten?
+		\answer Eine Ähnlichkeitsinvariante ist eine Größe, die sich beim Übergang von einer Matrix $A$ zu einer ähnlichen Matrix $B$ nicht ändert.
+		
+		\item Was ist ein Endomorphismus?
+		\answer Sei $K$ ein Körper und $V$ ein $K$-Vektorraum. Ein Endomorphismus ist eine Abbildung \(\Phi: V \rightarrow V\), für die gilt:\\
+		\(\begin{aligned} \forall u, v \in V : & \Phi(u+v)=\Phi(u)+\Phi(v) \\ \forall a \in K, v \in V : & \Phi(a v)=a \Phi(v) \end{aligned}\) \\
+		
+		% 12. Protokoll
+		\item Was ist ein Körper?
+		\answer Ein Körper ist ein kommutativer Ring $K$, indem \(0_K \neq 1_K\) gilt und jedes von Null verschiedene Element invertierbar ist: \(K^{\times} = K \setminus \{0\}\)
+		
+		\item Warum gibt es Eigenwerte gleich $0$, wenn die Matrix nicht vollen Rang besitzt?
+		\answer Da die Matrix $A$ keinen vollen Rang hat, gilt: \\
+		\(det(A) = 0 \iff det(A-0*Id) = 0 \iff 0 \in Spec(A)\) \\
+		Oder: \(0 \in Spec(A) \Rightarrow Eig(\Phi, 0) \neq \{0\}\). Aber \(Eig(\Phi, 0) = Kern(\Phi)\).\\
+		$\Rightarrow$ Kern ist nicht trivial $\Rightarrow$ Matrix hat nicht vollen Rang
+		
+		\item Was ist der Zusammenhang zwischen Eigenwerte und Kern?
+		\answer Es gilt:\\\(\begin{aligned}
+		\Phi(v) = \lambda * v & \iff \Phi(v) - \lambda*v = 0\\
+		& \iff (\Phi - \lambda*Id_V)(v) = 0\\
+		& \iff v \in Kern(\Phi - \lambda*Id_V) 
+		\end{aligned}\)\\
+		\(Eig(\Phi, \lambda) := Kern(\Phi - \lambda*Id_V)\)
+		
+		\item Was ist die Spur?
+		\answer Für eine Matrix \(A \in K^{d \times d}\) ist die Summe der Diagonalelemente die Spur von $A$.\\
+		\(Spur(A) := \sum_{i=1}^{d} a_{ii}\)
+		
+		% 13. Protokoll
+		\item Nennen Sie ein Beispiel für eine lineare Abbildung.
+		\answer Matrixmultiplikation \(\Phi_A(x) = A*x\), Identität, Nullabbildung
+		
+		\item Kann man bei gleicher Spur die Ähnlichkeit zweier Matrizen folgern?
+		\answer Nein, kann man nicht. Man kann nur aus Ähnlichkeit die gleiche Spur folgern.
+		
+		\item Nennen Sie zwei Matrizen mit gleicher Spur, die aber nicht ähnlich sind.
+		\answer Sei \(A:=\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}\) und \(A':=Id_3\). Offensichtlich gilt \(Spur(A) = Spur(A') = 3\), aber $A$ ist nicht zu $A'$ ähnlich.
+		
+		\item Was ist die algebraische und geometrische Vielfachheit?
+		\answer Sei $\Phi$ ein Endomorphismus eines endlich-dimensionalen $K$-Vektorraum und \(\lambda \in K\).\\
+		Dann heißt \(\mu_{g}(\Phi, \lambda) := dim(Eig(\Phi, \lambda))\) die geometrische Vielfachheit.\\
+		Die Zahl \(\mu_a(\Phi, \lambda) := max\{e \in N_0 | 0 \leq e \leq dim(V) \text{ und } (X-\lambda)^e \text{ teilt } CP_\Phi(X)\}\) heißt algebraische Vielfachheit von $\lambda$ für $\Phi$ (Nullstellenordnung).
+		
+		\item Bleibt die Diagonalisierbarkeit durch Spiegelung erhalten?
+		\answer Ja, da bei einer Spiegelung lediglich die Spalten getauscht werden.
+		
+		% 14.. Protokoll
+		\item Was heißt Lineare Abhängigkeit?
+		\answer Es gibt eine nichttriviale Darstellung des Nullvektors und innerhalb der Menge lässt sich ein Vektor als Linearkombination der anderen darstellen.
+		
+		\item Wie viele Nullstellen kann ein Polynom maximal haben?
+		\answer Ein Polynom des Grads $n$ kann maximal $n$ Nullstellen haben.
+		
+		% 15. Protokoll
+		\item Was ist der Kern einer Abbildung?
+		\answer Für eine lineare Abbildung \(\Phi : V \rightarrow W\) ist der Kern definiert als \(Kern(\Phi) := \{v \in V | \Phi(v) = 0\} = \Phi^{-1}(\{0\})\).
+		
+		\item Was ist die Dimension eines Vektorraums?
+		\answer Sei $V$ ein $K$-Vektorraum, der ein endliches Erzeugendensystem enthält. Dann wird die Mächtigkeit einer Basis $B$ von $V$ die Dimension von $V$ genannt.
+		
+		\item Was bedeutet Injektivität?
+		\answer Eine Abbildung \(f: A \rightarrow B\) ist injektiv, wenn gilt: \\
+		\(\forall x, y \in A: f(x) = f(y) \Rightarrow x = y\)
+		
+		\item Warum kann der Kern einer injektiven Abbildung nur den Nullvektor enthalten?
+		\answer Es gilt \(\Phi(0) = 0 \in Kern(\Phi)\). Sobald ein anderer Vektor auf die Null abgebildet wird, ist die Abbildung nicht mehr injektiv.
+		
+		\item Welche Eigenschaft haben zwei Matrizen, die bei der Verwendung unterschiedlicher Basen den selben Endomorphismus beschreiben?
+		\answer Sie sind ähnlich zueinander.
+		
+		\item Beweisen Sie, dass die Spur eine Ähnlichkeitsinvariante ist.
+		\answer Es gilt \(A' = S^{-1}*A*S\). Weiter gilt \(Spur(A*B) = Spur(B*A)\). Daraus folgt: \\
+		\(Spur(A') = Spur(S^{-1} * A * S) = Spur(A*S*S^{-1}) = Spur(A*Id) = Spur(A)\)
+		
+		% 16. Protokoll
+		
+		% 17. Protokoll
+		\item Was ist ein LGS?
+		\answer Ein lineares Gleichungssystem ist eine Menge von linearen Gleichungen der Form \(a_{1}*x_{1} + ... + a_{n}*x_{n} = b_{1}\).
+		
+		% 18. Protokoll
+		\item Ist $Z/6Z$ ein Körper?
+		\answer Nein, nur für Primzahlen bilde die Menge einen Körper. Es gilt nämlich \(3*2=0\). $3$ ist also Nullteiler und zu Nullteilern gibt es kein Inverses.
+		
+		% 19. Protokoll
+		\item Wie sieht $f^2$ aus, wenn $f: V \rightarrow W$ und $Bild(f) \subseteq Kern(f)$?
+		\answer $f^2$ muss die Nullabbildung sein.
+		
+		\item Welche Matrizen sind nicht invertierbar?
+		\answer Die Matrix \(A \in K^{n \times n}\) ist nicht invertierbar, falls \(det(A) = 0\) oder \(\nexists B \in K^{n \times n}: A*B = B*A = Id_{n}\)
+		
+		% 20. Protokoll
+		\item Was sagt der Zeilen- bzw. der Spaltenrang aus?
+		\answer Das gibt den Rang der Matrix an und ist die Anzahl der linear unabhängigen Zeilen bzw. Spalten. Weiter ist es die Dimension vom Bild der Matrix.
+		
+		\item Was ist der Betrag einer komplexen Zahlen?
+		\answer Sei \(z \in C\) mit \(z = a+b*i\). Dann ist \(|z|= \sqrt{a^2+b^2}\).
+		
+		\item Was ist die Basiswechselmatrix?
+		\answer Eine Matrix, die durch Multiplikation einen Basiswechsel hervorruft.
+		
+		% 21. Protokoll
+		\item Wann ist ein LGS eindeutig lösbar?
+		\answer Ein LGS \(A*x=b\) ist eindeutig lösbar, wenn \(Rang(A)=Rang(A|b)\) und $A$ vollen Rang hat.
+		
+		\item Wie kann man eine Matrix als Homomorphismus darstellen?
+		\answer Jede Matrix stellt eine lineare Abbildung dar (siehe Abbildungsmatrix).
+		
+		\item Sei \(A =
+		\begin{pmatrix}
+		1 & 2 & 3 \\
+		4 & 8 & 12 \\
+		2 & 4 & 6
+		\end{pmatrix}\). Bestimmen Sie den Rang von $A$.
+		\answer Der Rang von $A$ ist $1$. 
+		
+		\item Wieso hat eine \(n \times n\)-Matrix höchstens $n$ Eigenwerte?
+		\answer Angenommen eine \(n \times n\) Matrix $A$ hätte mehr als $n$ Eigenwerte. Weiter sei \(T := diag(\lambda_1, ..., \lambda_{n+1})\). Weiter müsste gelten \(T = S^{-1}AS\). Da aber \(A \in K^{n \times n}\) ist, würde die Matrixmultiplikation nicht mehr funktionieren.
+		
+		% 22. Protokoll
+		\item Sei \(A =
+		\begin{pmatrix}
+		1 & 2 & 3 \\
+		4 & 5 & 6 \\
+		7 & 8 & 9
+		\end{pmatrix}\). Bestimmen Sie den Rang von $A$ und die Determinante.
+		\answer Der Rang der Matrix ist $2$. $\Rightarrow$ \(det(A) = 0\)
+		
+		\item Beweisen Sie die Dimensionsformel: \(dim(V) = dim(Bild(\Phi)) + dim(Kern(\Phi))\)
+		\answer 
+		
+		\item Erläutern Sie den Zusammenhang zwischen linearen Abbildungen und Matrizen.
+		\answer Eine lineare Abbildung kann mittels Abbildungsmatrix beschrieben werden.
+		
+		% 23. Protokoll
+		\item Was ist das Besondere an Matrizen, die die selbe Abbildung bezüglich unterschiedlicher Basen beschreiben?
+		\answer Die Matrizen sind ähnlich zueinander.
+		
+		\item Was ist das Besondere an den Vektoren der Basiswechselmatrix, wenn man die Matrix diagonalisiert?
+		\answer Die Spalten sind die Eigenvektoren.
+		
+		% 24. Protokoll
+		\item Wann hat das CP \(X^2 + 1\) Nullstellen?
+		\answer Falls \(K = C\). Die zugehörigen Nullstellen wären $\pm i$.
+		
+		% 25. Protokoll
+		% 26. Protokoll
+		% 27. Protokoll (empfehlenswert)
+		% 28. Protokoll
+		% 29. Protokoll
+		
+		% Sonstiges
+		\item Wann ist eine Matrix \(A \in K^{n \times n}\) invertierbar?
+		\answer Es gilt:\\
+		\(\begin{aligned}A \text{ ist invertierbar} 
+		&\iff \exists S \in K^{n \times n}: AS = Id_n\\
+		&\iff Rang(A) = n \text{ bzw. } dim(Bild(\Phi)) = dim(V)\\
+		&\iff \text{Kern ist trivial}\\
+		&\iff 0 \text{ ist kein Eigenwert}\\
+		&\iff det(A) \neq 0\\
+		& \iff \Phi \text{ ist bijektiv}
+		\end{aligned}\)
+		
+	\end{enumerate}
+\end{document}
